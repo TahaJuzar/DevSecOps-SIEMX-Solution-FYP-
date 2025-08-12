@@ -1,0 +1,80 @@
+Objective
+In Phase 2, our goal was to set up a distributed logging and monitoring infrastructure using Elastic Stack (ELK) and Filebeat across multiple virtual machines. This setup enables centralized log collection, storage, analysis, and visualization for improved system monitoring and security incident detection.
+
+System Architecture
+We created four (4) virtual machines:
+
+Main VM (ELK Server)
+
+Hosts Elasticsearch, Logstash, and Kibana.
+
+Serves as the centralized logging server.
+
+Receives logs from client VMs running Filebeat.
+
+Performs log indexing, correlation, and visualization.
+
+Three Client VMs (Filebeat Agents)
+
+Each runs Filebeat, a lightweight log shipper.
+
+Collects logs (system logs, application logs, etc.) locally.
+
+Forwards logs securely to the ELK server.
+
+Implementation Steps
+1. ELK Setup on Main VM
+Installed and configured:
+
+Elasticsearch for log storage and search.
+
+Logstash for log processing and transformation.
+
+Kibana for visualization and dashboarding.
+
+Configured Logstash to listen for incoming logs from Filebeat agents.
+
+Opened and allowed relevant ports for communication (e.g., 5044 for Beats input).
+
+2. Filebeat Installation on Client VMs
+Installed Filebeat from Elastic repository.
+
+Configured filebeat.yml to:
+
+Specify log file locations (/var/log/syslog, /var/log/auth.log).
+
+Define the ELK server’s IP and Beats input port.
+
+Enabled Filebeat modules for system logs.
+
+Verified Filebeat service was running and forwarding logs.
+
+3. Log Flow
+Filebeat → Logstash → Elasticsearch → Kibana.
+
+Filebeat forwards logs in real-time to Logstash.
+
+Logstash parses and enriches logs, then stores them in Elasticsearch.
+
+Kibana visualizes logs through interactive dashboards.
+
+Results
+Centralized Monitoring: All three client VMs’ logs are viewable on the main ELK dashboard.
+
+Real-Time Analysis: Logs appear in Kibana with minimal delay.
+
+Improved Incident Detection: Enabled monitoring of login attempts, system events, and anomalies across all VMs.
+
+Scalability: The architecture supports adding more Filebeat agents as needed.
+
+Screenshots (to be inserted in final report)
+Kibana dashboard showing logs from all three Filebeat agents.
+
+Filebeat configuration file example.
+
+Logstash pipeline configuration snippet.
+
+Visualization of failed login attempts.
+
+Conclusion
+Phase 2 successfully implemented a multi-VM distributed logging environment. The main ELK VM aggregates logs from three separate Filebeat VMs, enabling real-time centralized monitoring and security event detection. This architecture lays the foundation for integrating security alerts and anomaly detection in Phase 3.
