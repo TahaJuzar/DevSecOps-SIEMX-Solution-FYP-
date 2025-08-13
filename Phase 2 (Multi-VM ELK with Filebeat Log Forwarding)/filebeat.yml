@@ -1,0 +1,21 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/*.log
+    - /var/log/messages
+    - /var/log/syslog
+  fields:
+    source_type: system_logs
+
+filebeat.modules:
+  - module: system
+    syslog:
+      enabled: true
+    auth:
+      enabled: true
+
+output.logstash:
+  hosts: ["your-logstash-host:5044"]
+
+logging.level: info
