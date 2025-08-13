@@ -76,5 +76,9 @@ Logstash pipeline configuration snippet.
 
 Visualization of failed login attempts.
 
+I have uploaded the configured files but filebeat setup cant be uploaded due to mb limit on github . you can download it using this command 
+sudo dpkg -i filebeat-8.11.1-amd64.deb
+and after this you can configure it as shown in the screenshots which are uploaded . 
+
 Conclusion
 Phase 2 successfully implemented a multi-VM distributed logging environment. The main ELK VM aggregates logs from three separate Filebeat VMs, enabling real-time centralized monitoring and security event detection. This architecture lays the foundation for integrating security alerts and anomaly detection in Phase 3.
